@@ -1,4 +1,4 @@
-/* Copyright (C) 2009-2020, NG Games (Galek Studios) Ltd. All rights reserved.
+/* Copyright (C) 2009-2020, Nick Galko Ltd. All rights reserved.
 *
 * This file is part of the NGTech (https://galek.github.io/portfolio/).
 *
@@ -8,7 +8,7 @@
 * the NGTech License Agreement; and (ii) your inclusion of this notice
 * in any version of this software that you use or redistribute.
 * A copy of the NGTech License Agreement is available by contacting
-* NG Games(Galek Studios) Ltd. at https://galek.github.io/portfolio/
+* Nick Galko Ltd. at https://galek.github.io/portfolio/
 */
 //***************************************************************************
 #include "MathLib.h"
@@ -27,7 +27,7 @@ namespace NGTech {
 	const Vec3 Math::Z_AXIS(Vec3(0.0, 0.0, 1.0));
 	//**************************************
 
-	float Math::angleBetweenVec(const Vec3 &a, const Vec3 &b) {
+	float Math::angleBetweenVec(const Vec3& a, const Vec3& b) {
 		Vec3 va = a;
 		Vec3 vb = b;
 		float dot = Vec3::dot(va, vb);
@@ -41,7 +41,7 @@ namespace NGTech {
 		return angle;
 	}
 
-	bool Math::intersectPlaneByRay(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &src, const Vec3 &dst, Vec3 &point) {
+	bool Math::intersectPlaneByRay(const Vec3& v0, const Vec3& v1, const Vec3& v2, const Vec3& src, const Vec3& dst, Vec3& point) {
 		Vec3 normal;
 		float distance;
 		float distance1 = 0, distance2 = 0;
@@ -76,7 +76,7 @@ namespace NGTech {
 		return true;
 	}
 
-	bool Math::insidePolygon(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &point) {
+	bool Math::insidePolygon(const Vec3& v0, const Vec3& v1, const Vec3& v2, const Vec3& point) {
 		const double MATCH_FACTOR = 0.99;
 		double angle = 0.0;
 		Vec3 a, b;
@@ -100,7 +100,7 @@ namespace NGTech {
 		return false;
 	}
 
-	bool Math::intersectPolygonByRay(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &src, const Vec3 &dst, Vec3 &point) {
+	bool Math::intersectPolygonByRay(const Vec3& v0, const Vec3& v1, const Vec3& v2, const Vec3& src, const Vec3& dst, Vec3& point) {
 		if (!intersectPlaneByRay(v0, v1, v2, src, dst, point))
 			return false;
 
@@ -110,7 +110,7 @@ namespace NGTech {
 		return false;
 	}
 
-	bool Math::intersectSphereByRay(const Vec3 &center, float radius, const Vec3 &src, const Vec3 &dst) {
+	bool Math::intersectSphereByRay(const Vec3& center, float radius, const Vec3& src, const Vec3& dst) {
 		Vec3 v1 = center - src;
 		Vec3 v2 = Vec3::normalize(dst - src);
 
@@ -153,31 +153,31 @@ namespace NGTech {
 		e[2] = e2; e[5] = e5; e[8] = e8;
 	}
 
-	Mat3::Mat3(const Mat3 &in) {
+	Mat3::Mat3(const Mat3& in) {
 		e[0] = in.e[0]; e[3] = in.e[3]; e[6] = in.e[6];
 		e[1] = in.e[1]; e[4] = in.e[4]; e[7] = in.e[7];
 		e[2] = in.e[2]; e[5] = in.e[5]; e[8] = in.e[8];
 	}
 
-	Mat3::Mat3(const Mat4 &in) {
+	Mat3::Mat3(const Mat4& in) {
 		e[0] = in.e[0]; e[3] = in.e[4]; e[6] = in.e[8];
 		e[1] = in.e[1]; e[4] = in.e[5]; e[7] = in.e[9];
 		e[2] = in.e[2]; e[5] = in.e[6]; e[8] = in.e[10];
 	}
 
-	Mat3 &Mat3::operator=(const Mat3 &in) {
+	Mat3& Mat3::operator=(const Mat3& in) {
 		e[0] = in.e[0]; e[3] = in.e[3]; e[6] = in.e[6];
 		e[1] = in.e[1]; e[4] = in.e[4]; e[7] = in.e[7];
 		e[2] = in.e[2]; e[5] = in.e[5]; e[8] = in.e[8];
 		return *this;
 	}
 
-	Mat3 &Mat3::operator*=(const Mat3 &in) {
+	Mat3& Mat3::operator*=(const Mat3& in) {
 		*this = *this * in;
 		return *this;
 	}
 
-	float &Mat3::operator[](intptr_t index) {
+	float& Mat3::operator[](intptr_t index) {
 		return e[index];
 	}
 
@@ -185,11 +185,11 @@ namespace NGTech {
 		return e[index];
 	}
 
-	Mat3::operator float*() {
+	Mat3::operator float* () {
 		return &e[0];
 	}
 
-	Mat3::operator const float*() const {
+	Mat3::operator const float* () const {
 		return &e[0];
 	}
 
@@ -204,13 +204,13 @@ namespace NGTech {
 		return d;
 	}
 
-	Mat3 Mat3::transpose(const Mat3 &m) {
+	Mat3 Mat3::transpose(const Mat3& m) {
 		return Mat3(m.e[0], m.e[1], m.e[2],
 			m.e[3], m.e[4], m.e[5],
 			m.e[6], m.e[7], m.e[8]);
 	}
 
-	Mat3 Mat3::inverse(const Mat3 &m) {
+	Mat3 Mat3::inverse(const Mat3& m) {
 		Mat3 iMat = m;
 
 		float iDet = Math::ONEFLOAT / iMat.getDeterminant();
@@ -227,7 +227,7 @@ namespace NGTech {
 		return iMat;
 	}
 
-	Mat3 Mat3::rotate(float angle, const Vec3 &axis) {
+	Mat3 Mat3::rotate(float angle, const Vec3& axis) {
 		float s = sinf(Math::DegreesToRadians(angle));
 		float c = cosf(Math::DegreesToRadians(angle));
 
@@ -238,21 +238,21 @@ namespace NGTech {
 		float uz = axis.z;
 
 		rMat.e[0] = c + (1 - c) * ux;
-		rMat.e[1] = (1 - c) * ux*uy + s * uz;
-		rMat.e[2] = (1 - c) * ux*uz - s * uy;
+		rMat.e[1] = (1 - c) * ux * uy + s * uz;
+		rMat.e[2] = (1 - c) * ux * uz - s * uy;
 
-		rMat.e[3] = (1 - c) * uy*ux - s * uz;
+		rMat.e[3] = (1 - c) * uy * ux - s * uz;
 		rMat.e[4] = c + (1 - c) * uy * uy;
-		rMat.e[5] = (1 - c) * uy*uz + s * ux;
+		rMat.e[5] = (1 - c) * uy * uz + s * ux;
 
-		rMat.e[6] = (1 - c) * uz*ux + s * uy;
-		rMat.e[7] = (1 - c) * uz*uz - s * ux;
+		rMat.e[6] = (1 - c) * uz * ux + s * uy;
+		rMat.e[7] = (1 - c) * uz * uz - s * ux;
 		rMat.e[8] = c + (1 - c) * uz * uz;
 
 		return rMat;
 	}
 
-	Mat3 Mat3::scale(const Vec3 &scale) {
+	Mat3 Mat3::scale(const Vec3& scale) {
 		Mat3 sMat;
 
 		sMat.e[0] = scale.x;
@@ -262,7 +262,7 @@ namespace NGTech {
 		return sMat;
 	}
 
-	Mat3 operator*(const Mat3 &a, const Mat3 &b) {
+	Mat3 operator*(const Mat3& a, const Mat3& b) {
 		Mat3 result;
 
 		result.e[0] = a.e[0] * b.e[0] + a.e[3] * b.e[1] + a.e[6] * b.e[2];
@@ -278,7 +278,7 @@ namespace NGTech {
 		return result;
 	}
 
-	Vec4 operator*(const Mat3 &m, const Vec4 &v) {
+	Vec4 operator*(const Mat3& m, const Vec4& v) {
 		Vec4 result;
 		result.x = m.e[0] * v.x + m.e[3] * v.y + m.e[6] * v.z;
 		result.y = m.e[1] * v.x + m.e[4] * v.y + m.e[7] * v.z;
@@ -287,7 +287,7 @@ namespace NGTech {
 		return result;
 	}
 
-	Vec4 operator*(const Vec4 &v, const Mat3 &m) {
+	Vec4 operator*(const Vec4& v, const Mat3& m) {
 		Vec4 result;
 		result.x = m.e[0] * v.x + m.e[3] * v.y + m.e[6] * v.z;
 		result.y = m.e[1] * v.x + m.e[4] * v.y + m.e[7] * v.z;
@@ -296,7 +296,7 @@ namespace NGTech {
 		return result;
 	}
 
-	Vec3 operator*(const Mat3 &m, const Vec3 &v) {
+	Vec3 operator*(const Mat3& m, const Vec3& v) {
 		Vec3 result;
 		result.x = m.e[0] * v.x + m.e[3] * v.y + m.e[6] * v.z;
 		result.y = m.e[1] * v.x + m.e[4] * v.y + m.e[7] * v.z;
@@ -304,7 +304,7 @@ namespace NGTech {
 		return result;
 	}
 
-	Vec3 operator*(const Vec3 &v, const Mat3 &m) {
+	Vec3 operator*(const Vec3& v, const Mat3& m) {
 		Vec3 result;
 		result.x = m.e[0] * v.x + m.e[3] * v.y + m.e[6] * v.z;
 		result.y = m.e[1] * v.x + m.e[4] * v.y + m.e[7] * v.z;
@@ -314,7 +314,7 @@ namespace NGTech {
 
 	/*
 	*/
-	void TBNComputer::computeN(Vec3 &n, const Vec3& p0, const Vec3& p1, const Vec3& p2) {
+	void TBNComputer::computeN(Vec3& n, const Vec3& p0, const Vec3& p1, const Vec3& p2) {
 		Vec3 s = p1 - p0;
 		Vec3 t = p2 - p0;
 		Vec3 normal = Vec3::cross(s, t);
@@ -322,7 +322,7 @@ namespace NGTech {
 		n = normal;
 	}
 
-	void TBNComputer::computeTBN(Vec3 &t, Vec3 &b, const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec2& t0, const Vec2& t1, const Vec2& t2, const Vec3& n) {
+	void TBNComputer::computeTBN(Vec3& t, Vec3& b, const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec2& t0, const Vec2& t1, const Vec2& t2, const Vec3& n) {
 		Vec3 position[3];
 		Vec2 texcoords[3];
 

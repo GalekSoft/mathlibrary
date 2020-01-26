@@ -51,14 +51,14 @@ namespace NGTech {
 		/*linear interpolation*/
 		template<typename type>
 		static ENGINE_INLINE type Lerp(type a, type b, type w) {
-			return (1.0 - w)*a + w * b;
+			return (1.0 - w) * a + w * b;
 		}
 
-		static float angleBetweenVec(const Vec3 &a, const Vec3 &b);
-		static bool insidePolygon(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &point);
-		static bool intersectPlaneByRay(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &src, const Vec3 &dst, Vec3 &point);
-		static bool intersectPolygonByRay(const Vec3 &v0, const Vec3 &v1, const Vec3 &v2, const Vec3 &src, const Vec3 &dst, Vec3 &point);
-		static bool intersectSphereByRay(const Vec3 &center, float radius, const Vec3 &src, const Vec3 &dst);
+		static float angleBetweenVec(const Vec3& a, const Vec3& b);
+		static bool insidePolygon(const Vec3& v0, const Vec3& v1, const Vec3& v2, const Vec3& point);
+		static bool intersectPlaneByRay(const Vec3& v0, const Vec3& v1, const Vec3& v2, const Vec3& src, const Vec3& dst, Vec3& point);
+		static bool intersectPolygonByRay(const Vec3& v0, const Vec3& v1, const Vec3& v2, const Vec3& src, const Vec3& dst, Vec3& point);
+		static bool intersectSphereByRay(const Vec3& center, float radius, const Vec3& src, const Vec3& dst);
 
 		template<typename type>
 		static ENGINE_INLINE type DegreesToRadians(type value) {
@@ -72,7 +72,7 @@ namespace NGTech {
 
 		static ENGINE_INLINE float tosRGBFloat(float rgba)
 		{
-			float srgb = (rgba*rgba)*(rgba*0.2848 + 0.7152);
+			float srgb = (rgba * rgba) * (rgba * 0.2848 + 0.7152);
 			return srgb;
 		}
 
@@ -137,49 +137,49 @@ namespace NGTech {
 		Vec2();
 		~Vec2();
 		Vec2(float cx, float cy);
-		Vec2(const Vec2 &in);
-		Vec2(const Vec3 &in);
-		Vec2(const Vec4 &in);
-		Vec2(const float *ar)
+		Vec2(const Vec2& in);
+		Vec2(const Vec3& in);
+		Vec2(const Vec4& in);
+		Vec2(const float* ar)
 		{
 			ASSERT(ar, "[Vec2] INVALID POINTER");
 			x = ar[0];
 			y = ar[1];
 		}
 
-		Vec2& operator=(const Vec2 &in);
+		Vec2& operator=(const Vec2& in);
 
 		float& operator[](intptr_t index);
 		float operator[](intptr_t index) const;
 
-		operator float*();
-		operator const float*() const;
+		operator float* ();
+		operator const float* () const;
 
 		Vec2 operator-() const;
 		Vec2 operator+() const;
-		Vec2& operator+=(const Vec2 &v);
-		Vec2& operator-=(const Vec2 &v);
-		Vec2& operator*=(const Vec2 &v);
-		Vec2& operator/=(const Vec2 &v);
-		Vec2& operator*=(const float &v);
+		Vec2& operator+=(const Vec2& v);
+		Vec2& operator-=(const Vec2& v);
+		Vec2& operator*=(const Vec2& v);
+		Vec2& operator/=(const Vec2& v);
+		Vec2& operator*=(const float& v);
 
-		bool operator==(const Vec2 &v) const;
-		bool operator!=(const Vec2 &v) const;
+		bool operator==(const Vec2& v) const;
+		bool operator!=(const Vec2& v) const;
 
 		float length();
 
-		friend Vec2 operator+(const Vec2 &a, const Vec2 &b);
-		friend Vec2 operator+(const Vec2 &a, float b);
-		friend Vec2 operator-(const Vec2 &a, const Vec2 &b);
-		friend Vec2 operator*(const Vec2 &a, const Vec2 &b);
-		friend Vec2 operator*(const Vec2 &v, float c);
-		friend Vec2 operator*(float c, const Vec2 &v);
-		friend Vec2 operator/(const Vec2 &a, const Vec2 &b);
-		friend Vec2 operator/(const Vec2 &v, float c);
-		friend Vec2 operator/(float c, const Vec2 &v);
+		friend Vec2 operator+(const Vec2& a, const Vec2& b);
+		friend Vec2 operator+(const Vec2& a, float b);
+		friend Vec2 operator-(const Vec2& a, const Vec2& b);
+		friend Vec2 operator*(const Vec2& a, const Vec2& b);
+		friend Vec2 operator*(const Vec2& v, float c);
+		friend Vec2 operator*(float c, const Vec2& v);
+		friend Vec2 operator/(const Vec2& a, const Vec2& b);
+		friend Vec2 operator/(const Vec2& v, float c);
+		friend Vec2 operator/(float c, const Vec2& v);
 
-		static Vec2 normalize(const Vec2 &a);
-		static ENGINE_INLINE float dot(const Vec2 &a, const Vec2 &b) {
+		static Vec2 normalize(const Vec2& a);
+		static ENGINE_INLINE float dot(const Vec2& a, const Vec2& b) {
 			return (a.x * b.x + a.y * b.y);
 		}
 
@@ -213,20 +213,19 @@ namespace NGTech {
 		static const Vec2 ZERO;
 		static const Vec2 ONE;
 
-
 		operator String() const {
 			return "X: " + std::to_string(x) + " Y: " + std::to_string(y);
 		}
 	};
 
-	extern Vec2 operator+(const Vec2 &a, const Vec2 &b);
-	extern Vec2 operator-(const Vec2 &a, const Vec2 &b);
-	extern Vec2 operator*(const Vec2 &a, const Vec2 &b);
-	extern Vec2 operator*(const Vec2 &v, float c);
-	extern Vec2 operator*(float c, const Vec2 &v);
-	extern Vec2 operator/(const Vec2 &a, const Vec2 &b);
-	extern Vec2 operator/(const Vec2 &v, float c);
-	extern Vec2 operator/(float c, const Vec2 &v);
+	extern Vec2 operator+(const Vec2& a, const Vec2& b);
+	extern Vec2 operator-(const Vec2& a, const Vec2& b);
+	extern Vec2 operator*(const Vec2& a, const Vec2& b);
+	extern Vec2 operator*(const Vec2& v, float c);
+	extern Vec2 operator*(float c, const Vec2& v);
+	extern Vec2 operator/(const Vec2& a, const Vec2& b);
+	extern Vec2 operator/(const Vec2& v, float c);
+	extern Vec2 operator/(float c, const Vec2& v);
 
 	/**
 	3D Vector class
@@ -249,10 +248,10 @@ namespace NGTech {
 		Vec3();
 		~Vec3();
 		Vec3(float cx, float cy, float cz);
-		Vec3(const Vec2 &in);
-		Vec3(const Vec3 &in);
-		Vec3(const Vec4 &in);
-		Vec3(const float *ar)
+		Vec3(const Vec2& in);
+		Vec3(const Vec3& in);
+		Vec3(const Vec4& in);
+		Vec3(const float* ar)
 		{
 			ASSERT(ar, "[Vec3] INVALID POINTER");
 			x = ar[0];
@@ -260,29 +259,29 @@ namespace NGTech {
 			z = ar[2];
 		}
 
-		Vec3& operator=(const Vec3 &in);
+		Vec3& operator=(const Vec3& in);
 
 		//!@todo ��� ��������� �������� ����������� - ��� ������ ���������� �������� �� �������?! - ���������� ��� ���� ���������
 		float& operator[](intptr_t index);
 		float operator[](intptr_t index) const;
 
-		operator float*();
-		operator const float*() const;
+		operator float* ();
+		operator const float* () const;
 
 		/// Unary operators.
 		Vec3 operator-() const;
 		Vec3 operator+() const;
 
 		/// Assignment operators.
-		Vec3& operator+=(const Vec3 &v);
-		Vec3& operator-=(const Vec3 &v);
-		Vec3& operator*=(const Vec3 &v);
-		Vec3& operator/=(const Vec3 &v);
-		Vec3& operator*=(const float &v);
+		Vec3& operator+=(const Vec3& v);
+		Vec3& operator-=(const Vec3& v);
+		Vec3& operator*=(const Vec3& v);
+		Vec3& operator/=(const Vec3& v);
+		Vec3& operator*=(const float& v);
 
 		/// Binary comparison operators.
-		bool operator==(const Vec3 &v) const;
-		bool operator!=(const Vec3 &v) const;
+		bool operator==(const Vec3& v) const;
+		bool operator!=(const Vec3& v) const;
 
 		/// Binary math operators.
 		ENGINE_INLINE Vec3 operator^(const Vec3& V) const
@@ -317,16 +316,16 @@ namespace NGTech {
 		{
 			normalize(*this);
 		}
-		ENGINE_INLINE float DotProduct(const Vec3 &vec) const
+		ENGINE_INLINE float DotProduct(const Vec3& vec) const
 		{
-			return ((vec.x*x) + (vec.y*y) + (vec.z*z));
+			return ((vec.x * x) + (vec.y * y) + (vec.z * z));
 		}
 
-		ENGINE_INLINE Vec3 CrossProduct(const Vec3 &vec) const
+		ENGINE_INLINE Vec3 CrossProduct(const Vec3& vec) const
 		{
-			return Vec3((y*vec.z) - (z*vec.y),
-				(z*vec.x) - (x*vec.z),
-				(x*vec.y) - (y*vec.x));
+			return Vec3((y * vec.z) - (z * vec.y),
+				(z * vec.x) - (x * vec.z),
+				(x * vec.y) - (y * vec.x));
 		}
 
 		ENGINE_INLINE void Set(float _x, float _y, float _z)
@@ -338,10 +337,10 @@ namespace NGTech {
 
 		ENGINE_INLINE float GetSquaredLength() const
 		{
-			return ((x*x) + (y*y) + (z*z));
+			return ((x * x) + (y * y) + (z * z));
 		}
 
-		ENGINE_INLINE float Distance(const Vec3 &vec) const
+		ENGINE_INLINE float Distance(const Vec3& vec) const
 		{
 			return (*this - vec).length();
 		}
@@ -365,14 +364,14 @@ namespace NGTech {
 			return result;
 		}
 
-		ENGINE_INLINE void Clamp(const Vec3 &mins, const Vec3 &maxes)
+		ENGINE_INLINE void Clamp(const Vec3& mins, const Vec3& maxes)
 		{
 			Math::Clamp(x, mins.x, maxes.x);
 			Math::Clamp(y, mins.y, maxes.y);
 			Math::Clamp(z, mins.z, maxes.z);
 		}
 
-		ENGINE_INLINE Vec3 GetClamped(const Vec3 &mins, const Vec3 &maxes)
+		ENGINE_INLINE Vec3 GetClamped(const Vec3& mins, const Vec3& maxes)
 		{
 			Vec3 result(*this);
 			result.Clamp(mins, maxes);
@@ -386,38 +385,38 @@ namespace NGTech {
 			z = z * scale;
 		}
 
-		friend Vec3 operator+(const Vec3 &a, const Vec3 &b);
-		friend Vec3 operator+(const Vec3 &a, float b);
-		friend Vec3 operator-(const Vec3 &a, const Vec3 &b);
-		friend Vec3 operator*(const Vec3 &a, const Vec3 &b);
-		friend Vec3 operator*(const Vec3 &v, float c);
-		friend Vec3 operator*(float c, const Vec3 &v);
-		friend Vec3 operator/(const Vec3 &a, const Vec3 &b);
-		friend Vec3 operator/(const Vec3 &v, float c);
-		friend Vec3 operator/(float c, const Vec3 &v);
+		friend Vec3 operator+(const Vec3& a, const Vec3& b);
+		friend Vec3 operator+(const Vec3& a, float b);
+		friend Vec3 operator-(const Vec3& a, const Vec3& b);
+		friend Vec3 operator*(const Vec3& a, const Vec3& b);
+		friend Vec3 operator*(const Vec3& v, float c);
+		friend Vec3 operator*(float c, const Vec3& v);
+		friend Vec3 operator/(const Vec3& a, const Vec3& b);
+		friend Vec3 operator/(const Vec3& v, float c);
+		friend Vec3 operator/(float c, const Vec3& v);
 
-		static Vec3 normalize(const Vec3 &a);
-		static ENGINE_INLINE float dot(const Vec3 &a, const Vec3 &b) {
+		static Vec3 normalize(const Vec3& a);
+		static ENGINE_INLINE float dot(const Vec3& a, const Vec3& b) {
 			return (a.x * b.x + a.y * b.y + a.z * b.z);
 		}
-		static Vec3 cross(const Vec3 &a, const Vec3 &b);
+		static Vec3 cross(const Vec3& a, const Vec3& b);
 
 		static const Vec3 ZERO;
 		static const Vec3 ONE;
 
 		operator String() const {
-			return "X: " + std::to_string(x) + " Y: " + std::to_string(y) +" Z: " + std::to_string(z);
+			return "X: " + std::to_string(x) + " Y: " + std::to_string(y) + " Z: " + std::to_string(z);
 		}
 	};
 
-	extern Vec3 operator+(const Vec3 &a, const Vec3 &b);
-	extern Vec3 operator-(const Vec3 &a, const Vec3 &b);
-	extern Vec3 operator*(const Vec3 &a, const Vec3 &b);
-	extern Vec3 operator*(const Vec3 &v, float c);
-	extern Vec3 operator*(float c, const Vec3 &v);
-	extern Vec3 operator/(const Vec3 &a, const Vec3 &b);
-	extern Vec3 operator/(const Vec3 &v, float c);
-	extern Vec3 operator/(float c, const Vec3 &v);
+	extern Vec3 operator+(const Vec3& a, const Vec3& b);
+	extern Vec3 operator-(const Vec3& a, const Vec3& b);
+	extern Vec3 operator*(const Vec3& a, const Vec3& b);
+	extern Vec3 operator*(const Vec3& v, float c);
+	extern Vec3 operator*(float c, const Vec3& v);
+	extern Vec3 operator/(const Vec3& a, const Vec3& b);
+	extern Vec3 operator/(const Vec3& v, float c);
+	extern Vec3 operator/(float c, const Vec3& v);
 
 	/**
 	4D Vector class
@@ -440,34 +439,34 @@ namespace NGTech {
 		Vec4();
 		~Vec4();
 		Vec4(float cx, float cy, float cz, float cw);
-		Vec4(const Vec2 &in);
-		Vec4(const Vec3 &in);
-		Vec4(const Vec3 &in, float cw);
-		Vec4(const Vec4 &in);
-		Vec4(const float *ar)
+		Vec4(const Vec2& in);
+		Vec4(const Vec3& in);
+		Vec4(const Vec3& in, float cw);
+		Vec4(const Vec4& in);
+		Vec4(const float* ar)
 		{
 			ASSERT(ar, "Vec4] INVALID POINTER");
 			x = ar[0]; y = ar[1]; z = ar[2]; w = ar[3];
 		}
 
-		Vec4& operator=(const Vec4 &in);
+		Vec4& operator=(const Vec4& in);
 		float& operator[](intptr_t index);
 		float operator[](intptr_t index) const;
 
-		operator float*();
-		operator const float*() const;
+		operator float* ();
+		operator const float* () const;
 
 		Vec4 operator-() const;
 		Vec4 operator+() const;
 
-		Vec4& operator+=(const Vec4 &v);
-		Vec4& operator-=(const Vec4 &v);
-		Vec4& operator*=(const Vec4 &v);
-		Vec4& operator/=(const Vec4 &v);
-		Vec4& operator*=(const float &v);
+		Vec4& operator+=(const Vec4& v);
+		Vec4& operator-=(const Vec4& v);
+		Vec4& operator*=(const Vec4& v);
+		Vec4& operator/=(const Vec4& v);
+		Vec4& operator*=(const float& v);
 
-		bool operator==(const Vec4 &v) const;
-		bool operator!=(const Vec4 &v) const;
+		bool operator==(const Vec4& v) const;
+		bool operator!=(const Vec4& v) const;
 
 		float length();
 
@@ -486,9 +485,9 @@ namespace NGTech {
 			normalize(*this);
 		}
 
-		ENGINE_INLINE float DotProduct(const Vec4 &vec) const
+		ENGINE_INLINE float DotProduct(const Vec4& vec) const
 		{
-			return ((vec.x*x) + (vec.y*y) + (vec.z*z) + (vec.w*w));
+			return ((vec.x * x) + (vec.y * y) + (vec.z * z) + (vec.w * w));
 		}
 
 		ENGINE_INLINE void Set(float _x, float _y, float _z, float _w)
@@ -499,7 +498,7 @@ namespace NGTech {
 			this->w = _w;
 		}
 
-		ENGINE_INLINE void Set(const Vec3 &vec)
+		ENGINE_INLINE void Set(const Vec3& vec)
 		{
 			x = vec.x;
 			y = vec.y;
@@ -512,18 +511,18 @@ namespace NGTech {
 			x = y = z = w = Math::ZEROFLOAT;
 		}
 
-		friend Vec4 operator+(const Vec4 &a, const Vec4 &b);
-		friend Vec4 operator+(const Vec4 &a, float b);
-		friend Vec4 operator-(const Vec4 &a, const Vec4 &b);
-		friend Vec4 operator*(const Vec4 &a, const Vec4 &b);
-		friend Vec4 operator*(const Vec4 &v, float c);
-		friend Vec4 operator*(float c, const Vec4 &v);
-		friend Vec4 operator/(const Vec4 &a, const Vec4 &b);
-		friend Vec4 operator/(const Vec4 &v, float c);
-		friend Vec4 operator/(float c, const Vec4 &v);
+		friend Vec4 operator+(const Vec4& a, const Vec4& b);
+		friend Vec4 operator+(const Vec4& a, float b);
+		friend Vec4 operator-(const Vec4& a, const Vec4& b);
+		friend Vec4 operator*(const Vec4& a, const Vec4& b);
+		friend Vec4 operator*(const Vec4& v, float c);
+		friend Vec4 operator*(float c, const Vec4& v);
+		friend Vec4 operator/(const Vec4& a, const Vec4& b);
+		friend Vec4 operator/(const Vec4& v, float c);
+		friend Vec4 operator/(float c, const Vec4& v);
 
-		static Vec4 normalize(const Vec4 &a);
-		static ENGINE_INLINE float dot(const Vec4 &a, const Vec4 &b) {
+		static Vec4 normalize(const Vec4& a);
+		static ENGINE_INLINE float dot(const Vec4& a, const Vec4& b) {
 			return (a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w);
 		}
 
@@ -534,7 +533,6 @@ namespace NGTech {
 			w = Math::Clamp(w, Math::ZEROFLOAT, Math::ONEFLOAT);
 		}
 
-
 		operator String() const {
 			return "X: " + std::to_string(x) + " Y: " + std::to_string(y) + " Z: " + std::to_string(z) + " W: " + std::to_string(w);
 		}
@@ -543,14 +541,14 @@ namespace NGTech {
 		static const Vec4 ONE;
 	};
 
-	extern Vec4 operator+(const Vec4 &a, const Vec4 &b);
-	extern Vec4 operator-(const Vec4 &a, const Vec4 &b);
-	extern Vec4 operator*(const Vec4 &a, const Vec4 &b);
-	extern Vec4 operator*(const Vec4 &v, float c);
-	extern Vec4 operator*(float c, const Vec4 &v);
-	extern Vec4 operator/(const Vec4 &a, const Vec4 &b);
-	extern Vec4 operator/(const Vec4 &v, float c);
-	extern Vec4 operator/(float c, const Vec4 &v);
+	extern Vec4 operator+(const Vec4& a, const Vec4& b);
+	extern Vec4 operator-(const Vec4& a, const Vec4& b);
+	extern Vec4 operator*(const Vec4& a, const Vec4& b);
+	extern Vec4 operator*(const Vec4& v, float c);
+	extern Vec4 operator*(float c, const Vec4& v);
+	extern Vec4 operator/(const Vec4& a, const Vec4& b);
+	extern Vec4 operator/(const Vec4& v, float c);
+	extern Vec4 operator/(float c, const Vec4& v);
 
 	/*/
 	Color Class
@@ -667,34 +665,34 @@ namespace NGTech {
 			float e1, float e4, float e7,
 			float e2, float e5, float e8);
 
-		Mat3(const Mat3 &in);
-		Mat3(const Mat4 &in);
+		Mat3(const Mat3& in);
+		Mat3(const Mat4& in);
 
-		Mat3 &operator=(const Mat3 &in);
-		Mat3 &operator*=(const Mat3 &in);
+		Mat3& operator=(const Mat3& in);
+		Mat3& operator*=(const Mat3& in);
 
-		float &operator[](intptr_t index);
+		float& operator[](intptr_t index);
 		float operator[](intptr_t index) const;
-		operator float*();
-		operator const float*() const;
+		operator float* ();
+		operator const float* () const;
 
 		float getDeterminant();
 
-		static Mat3 transpose(const Mat3 &m);
-		static Mat3 inverse(const Mat3 &m);
+		static Mat3 transpose(const Mat3& m);
+		static Mat3 inverse(const Mat3& m);
 
-		static Mat3 rotate(float angle, const Vec3 &axis);
-		static Mat3 scale(const Vec3 &scale);
+		static Mat3 rotate(float angle, const Vec3& axis);
+		static Mat3 scale(const Vec3& scale);
 
 		static const Mat3 ZERO;
 		static const Mat3 ONE;
 	};
 
-	extern Mat3 operator*(const Mat3 &a, const Mat3 &b);
-	extern Vec4 operator*(const Mat3 &m, const Vec4 &v);
-	extern Vec4 operator*(const Vec4 &v, const Mat3 &m);
-	extern Vec3 operator*(const Mat3 &m, const Vec3 &v);
-	extern Vec3 operator*(const Vec3 &v, const Mat3 &m);
+	extern Mat3 operator*(const Mat3& a, const Mat3& b);
+	extern Vec4 operator*(const Mat3& m, const Vec4& v);
+	extern Vec4 operator*(const Vec4& v, const Mat3& m);
+	extern Vec3 operator*(const Mat3& m, const Vec3& v);
+	extern Vec3 operator*(const Vec3& v, const Mat3& m);
 
 	/**
 	4x4 Matrix class
@@ -707,22 +705,22 @@ namespace NGTech {
 			float e1, float e5, float e9, float e13,
 			float e2, float e6, float e10, float e14,
 			float e3, float e7, float e11, float e15);
-		Mat4(const Mat4 &in);
-		Mat4(const Mat3 &in);
+		Mat4(const Mat4& in);
+		Mat4(const Mat3& in);
 
-		Mat4 &operator=(const Mat4 &in);
-		Mat4 &operator*=(const Mat4 &in);
+		Mat4& operator=(const Mat4& in);
+		Mat4& operator*=(const Mat4& in);
 
-		float &operator[](intptr_t index);
+		float& operator[](intptr_t index);
 		float operator[](intptr_t index) const;
-		operator float*();
-		operator const float*() const;
+		operator float* ();
+		operator const float* () const;
 
 		ENGINE_INLINE Vec3 GetScale() const { return Vec3{ e[0], e[5], e[10] }; }
-		ENGINE_INLINE float &GetScaleForChange_X() { return e[0]; }
-		ENGINE_INLINE float &GetScaleForChange_Y() { return e[5]; }
-		ENGINE_INLINE float &GetScaleForChange_Z() { return e[10]; }
-		ENGINE_INLINE void SetScale(const Vec3&_v) { e[0] = _v.x; e[5] = _v.y; e[10] = _v.z; }
+		ENGINE_INLINE float& GetScaleForChange_X() { return e[0]; }
+		ENGINE_INLINE float& GetScaleForChange_Y() { return e[5]; }
+		ENGINE_INLINE float& GetScaleForChange_Z() { return e[10]; }
+		ENGINE_INLINE void SetScale(const Vec3& _v) { e[0] = _v.x; e[5] = _v.y; e[10] = _v.z; }
 		/*
 		!@ Rotation Matrix from current matrix.
 		*/
@@ -733,37 +731,37 @@ namespace NGTech {
 		void SetZero();
 
 		ENGINE_INLINE Vec3 GetPosition() const { return Vec3{ e[12], e[13], e[14] }; }
-		ENGINE_INLINE float &GetPositionForChange_X() { return e[12]; }
-		ENGINE_INLINE float &GetPositionForChange_Y() { return e[13]; }
-		ENGINE_INLINE float &GetPositionForChange_Z() { return e[14]; }
-		void SetPosition(const Vec3&_vec);
+		ENGINE_INLINE float& GetPositionForChange_X() { return e[12]; }
+		ENGINE_INLINE float& GetPositionForChange_Y() { return e[13]; }
+		ENGINE_INLINE float& GetPositionForChange_Z() { return e[14]; }
+		void SetPosition(const Vec3& _vec);
 
 		/*
 		*/
-		static Mat4 transpose(const Mat4 &m);
-		static Mat4 inverse(const Mat4 &m);
+		static Mat4 transpose(const Mat4& m);
+		static Mat4 inverse(const Mat4& m);
 
-		static Mat4 translate(const Vec3 &trans);
+		static Mat4 translate(const Vec3& trans);
 		/*
 		angle-can be only Degrees
 		*/
-		static Mat4 rotate(float degree, const Vec3 &axis);
-		static Mat4 scale(const Vec3 &scale);
-		static Mat4 lookAt(const Vec3 &eye, const Vec3 &center, const Vec3 &up);
+		static Mat4 rotate(float degree, const Vec3& axis);
+		static Mat4 scale(const Vec3& scale);
+		static Mat4 lookAt(const Vec3& eye, const Vec3& center, const Vec3& up);
 
 		static Mat4 perspective(float fovy, float aspect, float n, float f);
 		static Mat4 ortho(float left, float right, float bottom, float top, float n, float f);
 
-		static Mat4 reflect(const Vec4 &plane);
-		static Mat4 reflectProjection(const Mat4 &proj, const Vec4 &plane);
+		static Mat4 reflect(const Vec4& plane);
+		static Mat4 reflectProjection(const Mat4& proj, const Vec4& plane);
 
-		static Mat4 cube(const Vec3 &position, int face);
+		static Mat4 cube(const Vec3& position, int face);
 
 		static Mat4 texBias();
 		/*Arithmetic operators*/
-		Mat4 operator * (const Mat4 &m) const;   // M * N
-		Vec4 operator*(const Vec4 &v) const;	 // M * V
-		Vec3 operator*(const Vec3 &v) const;	 // M * V
+		Mat4 operator * (const Mat4& m) const;   // M * N
+		Vec4 operator*(const Vec4& v) const;	 // M * V
+		Vec3 operator*(const Vec3& v) const;	 // M * V
 
 		static const Mat4 ZERO;
 		static const Mat4 ZEROAFFINE;
@@ -774,8 +772,8 @@ namespace NGTech {
 	};
 
 	//Implement to Vectors
-	extern Vec4 operator*(const Vec4 &v, const Mat4 &m);
-	extern Vec3 operator*(const Vec3 &v, const Mat4 &m);
+	extern Vec4 operator*(const Vec4& v, const Mat4& m);
+	extern Vec3 operator*(const Vec3& v, const Mat4& m);
 
 	namespace Utils
 	{
@@ -783,15 +781,15 @@ namespace NGTech {
 		*/
 		struct AffineTransformations
 		{
-			static ENGINE_INLINE void RotateAndGet(Mat4& out, float degree, const Vec3 &axis)
+			static ENGINE_INLINE void RotateAndGet(Mat4& out, float degree, const Vec3& axis)
 			{
-				out = Mat4::rotate(degree, axis)*out;
+				out = Mat4::rotate(degree, axis) * out;
 			}
 		};
 
 		/**
 		*/
-		static ENGINE_INLINE void TransformCoord(Vec3&out, const Vec3 &v, const Mat4& m)
+		static ENGINE_INLINE void TransformCoord(Vec3& out, const Vec3& v, const Mat4& m)
 		{
 			Vec4 tmp;
 
@@ -842,18 +840,18 @@ namespace NGTech {
 
 		Quat();
 		Quat(float _x, float _y, float _z, float _w);
-		Quat(float angle, const Vec3 &axis);
+		Quat(float angle, const Vec3& axis);
 
-		Quat(const Mat3 &in);
+		Quat(const Mat3& in);
 
-		operator float*();
-		operator const float*() const;
+		operator float* ();
+		operator const float* () const;
 
-		float &operator[](intptr_t i);
+		float& operator[](intptr_t i);
 		const float operator[](intptr_t i) const;
 
-		Quat operator*(const Quat &q) const;
-		static Quat slerp(const Quat &q0, const Quat &q1, float t);
+		Quat operator*(const Quat& q) const;
+		static Quat slerp(const Quat& q0, const Quat& q1, float t);
 		Mat3 toMatrix() const;
 
 		ENGINE_INLINE void Identity()
@@ -862,7 +860,7 @@ namespace NGTech {
 			w = 1;
 		}
 
-		ENGINE_INLINE void Multiply(const Quat &b)
+		ENGINE_INLINE void Multiply(const Quat& b)
 		{
 			float tmp[4];
 
@@ -877,7 +875,7 @@ namespace NGTech {
 			w = tmp[3];
 		}
 
-		ENGINE_INLINE void Rotate(Vec3 &out, Vec3 v)
+		ENGINE_INLINE void Rotate(Vec3& out, Vec3 v)
 		{
 			Quat cq;
 			Quat p = { v[0], v[1], v[2], 0 };
@@ -892,7 +890,7 @@ namespace NGTech {
 			out.z = p[2];
 		}
 
-		ENGINE_INLINE void RotationAxis(const Vec3 &_axisvector, float angle)
+		ENGINE_INLINE void RotationAxis(const Vec3& _axisvector, float angle)
 		{
 			float l = sqrtf(_axisvector.x * _axisvector.x + _axisvector.y * _axisvector.y + _axisvector.z * _axisvector.z);
 			float ha = angle * 0.5f;
@@ -919,8 +917,8 @@ namespace NGTech {
 	Computes TBN basis
 	*/
 	struct TBNComputer {
-		static void computeN(Vec3 &n, const Vec3& p0, const Vec3& p1, const Vec3& p2);
-		static void computeTBN(Vec3 &t, Vec3 &b, const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec2& t0, const Vec2& t1, const Vec2& t2, const Vec3& n);
+		static void computeN(Vec3& n, const Vec3& p0, const Vec3& p1, const Vec3& p2);
+		static void computeTBN(Vec3& t, Vec3& b, const Vec3& p0, const Vec3& p1, const Vec3& p2, const Vec2& t0, const Vec2& t1, const Vec2& t2, const Vec3& n);
 	};
 
 	static_assert(sizeof(Vec2) == 2 * sizeof(float), "Invalid Vec2 padding!");

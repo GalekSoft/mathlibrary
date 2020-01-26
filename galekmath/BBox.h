@@ -43,7 +43,7 @@ namespace NGTech
 
 		/**
 		*/
-		BBox(const Vec3 &_min, const Vec3 &_max) :
+		BBox(const Vec3& _min, const Vec3& _max) :
 			mins(_min),
 			maxes(_max)
 		{
@@ -52,7 +52,7 @@ namespace NGTech
 
 		/**
 		*/
-		BBox(const BBox &_box) :
+		BBox(const BBox& _box) :
 			mins(_box.mins),
 			maxes(_box.maxes),
 			m_vCenter(_box.m_vCenter),
@@ -61,7 +61,7 @@ namespace NGTech
 
 		/**
 		*/
-		ENGINE_INLINE BBox &operator=(const BBox &_box)
+		ENGINE_INLINE BBox& operator=(const BBox& _box)
 		{
 			if (this != &_box)
 			{
@@ -83,7 +83,7 @@ namespace NGTech
 
 		/**
 		*/
-		ENGINE_INLINE void AddPoint(const Vec3 &point)
+		ENGINE_INLINE void AddPoint(const Vec3& point)
 		{
 			if (maxes.x < point.x) maxes.x = point.x;
 			if (maxes.y < point.y) maxes.y = point.y;
@@ -96,7 +96,7 @@ namespace NGTech
 			_ComputeCenter();
 		}
 
-		ENGINE_INLINE void GetPoints(Vec3 *points, int num_points) const {
+		ENGINE_INLINE void GetPoints(Vec3* points, int num_points) const {
 			points[0].Set(mins.x, mins.y, mins.z);
 			points[1].Set(maxes.x, mins.y, mins.z);
 			points[2].Set(mins.x, maxes.y, mins.z);
@@ -109,7 +109,7 @@ namespace NGTech
 
 		/**
 		*/
-		ENGINE_INLINE void AddBBox(const BBox &box)
+		ENGINE_INLINE void AddBBox(const BBox& box)
 		{
 			if (maxes.x < box.maxes.x) maxes.x = box.maxes.x;
 			if (maxes.y < box.maxes.y) maxes.y = box.maxes.y;
@@ -124,7 +124,7 @@ namespace NGTech
 
 		/**
 		*/
-		ENGINE_INLINE bool IsPointInside(const Vec3 &point)
+		ENGINE_INLINE bool IsPointInside(const Vec3& point)
 		{
 			return (point.x >= mins.x && point.x <= maxes.x &&
 				point.y >= mins.y && point.y <= maxes.y &&
@@ -169,7 +169,7 @@ namespace NGTech
 			_ComputeCenter();
 		}
 
-		void Inflate(const Vec3 &point);
+		void Inflate(const Vec3& point);
 
 		/**
 		*/
@@ -263,7 +263,7 @@ namespace NGTech
 
 		/**
 		*/
-		ENGINE_INLINE void FitToBox(float& outnear, float& outfar, const Vec3&eye, const Vec3&look)
+		ENGINE_INLINE void FitToBox(float& outnear, float& outfar, const Vec3& eye, const Vec3& look)
 		{
 			Vec4 refplane;
 
@@ -286,5 +286,5 @@ namespace NGTech
 		Vec3	m_vCenter;
 		Vec3	m_vCenterHalf;
 	};
-	extern BBox operator*(const Mat4 &a, const BBox &b);
+	extern BBox operator*(const Mat4& a, const BBox& b);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009-2020, NG Games (Galek Studios) Ltd. All rights reserved.
+/* Copyright (C) 2009-2020, Nick Galko Ltd. All rights reserved.
 *
 * This file is part of the NGTech (https://galek.github.io/portfolio/).
 *
@@ -8,7 +8,7 @@
 * the NGTech License Agreement; and (ii) your inclusion of this notice
 * in any version of this software that you use or redistribute.
 * A copy of the NGTech License Agreement is available by contacting
-* NG Games(Galek Studios) Ltd. at https://galek.github.io/portfolio/
+* Nick Galko Ltd. at https://galek.github.io/portfolio/
 */
 //***************************************************************************
 #include "MathLib.h"
@@ -70,21 +70,21 @@ namespace NGTech
 		e[3] = e3; e[7] = e7; e[11] = e11; e[15] = e15;
 	}
 
-	Mat4::Mat4(const Mat4 &in) {
+	Mat4::Mat4(const Mat4& in) {
 		e[0] = in.e[0]; e[4] = in.e[4]; e[8] = in.e[8];  e[12] = in.e[12];
 		e[1] = in.e[1]; e[5] = in.e[5]; e[9] = in.e[9];  e[13] = in.e[13];
 		e[2] = in.e[2]; e[6] = in.e[6]; e[10] = in.e[10]; e[14] = in.e[14];
 		e[3] = in.e[3]; e[7] = in.e[7]; e[11] = in.e[11]; e[15] = in.e[15];
 	}
 
-	Mat4::Mat4(const Mat3 &in) {
+	Mat4::Mat4(const Mat3& in) {
 		e[0] = in.e[0]; e[4] = in.e[3]; e[8] = in.e[6];  e[12] = 0.0;
 		e[1] = in.e[1]; e[5] = in.e[4]; e[9] = in.e[7];  e[13] = 0.0;
 		e[2] = in.e[2]; e[6] = in.e[5]; e[10] = in.e[8]; e[14] = 0.0;
 		e[3] = 0.0;  e[7] = 0.0;  e[11] = 0.0;  e[15] = 1.0;
 	}
 
-	Mat4 &Mat4::operator=(const Mat4 &in) {
+	Mat4& Mat4::operator=(const Mat4& in) {
 		e[0] = in.e[0]; e[4] = in.e[4]; e[8] = in.e[8];  e[12] = in.e[12];
 		e[1] = in.e[1]; e[5] = in.e[5]; e[9] = in.e[9];  e[13] = in.e[13];
 		e[2] = in.e[2]; e[6] = in.e[6]; e[10] = in.e[10]; e[14] = in.e[14];
@@ -92,12 +92,12 @@ namespace NGTech
 		return *this;
 	}
 
-	Mat4 &Mat4::operator*=(const Mat4 &in) {
+	Mat4& Mat4::operator*=(const Mat4& in) {
 		*this = *this * in;
 		return *this;
 	}
 
-	float &Mat4::operator[](intptr_t index) {
+	float& Mat4::operator[](intptr_t index) {
 		return e[index];
 	}
 
@@ -105,11 +105,11 @@ namespace NGTech
 		return e[index];
 	}
 
-	Mat4::operator float*() {
+	Mat4::operator float* () {
 		return &e[0];
 	}
 
-	Mat4::operator const float*() const {
+	Mat4::operator const float* () const {
 		return &e[0];
 	}
 
@@ -136,14 +136,14 @@ namespace NGTech
 		return _out;
 	}
 
-	Mat4 Mat4::transpose(const Mat4 &m) {
+	Mat4 Mat4::transpose(const Mat4& m) {
 		return Mat4(m.e[0], m.e[1], m.e[2], m.e[3],
 			m.e[4], m.e[5], m.e[6], m.e[7],
 			m.e[8], m.e[9], m.e[10], m.e[11],
 			m.e[12], m.e[13], m.e[14], m.e[15]);
 	}
 
-	Mat4 Mat4::inverse(const Mat4 &m) {
+	Mat4 Mat4::inverse(const Mat4& m) {
 		Mat4 iMat = m;
 
 		float iDet = Math::ONEFLOAT / iMat.getDeterminant();
@@ -171,7 +171,7 @@ namespace NGTech
 		return iMat;
 	}
 
-	Mat4 Mat4::translate(const Vec3 &trans) {
+	Mat4 Mat4::translate(const Vec3& trans) {
 		Mat4 out;
 		out.e[12] = trans.x;
 		out.e[13] = trans.y;
@@ -179,7 +179,7 @@ namespace NGTech
 		return out;
 	}
 
-	Mat4 Mat4::rotate(float angle, const Vec3 &axis) {
+	Mat4 Mat4::rotate(float angle, const Vec3& axis) {
 		float s = sinf(Math::DegreesToRadians(angle));
 		float c = cosf(Math::DegreesToRadians(angle));
 
@@ -190,17 +190,17 @@ namespace NGTech
 		float uz = axis.z;
 
 		rMat.e[0] = c + (1 - c) * ux;
-		rMat.e[1] = (1 - c) * ux*uy + s * uz;
-		rMat.e[2] = (1 - c) * ux*uz - s * uy;
+		rMat.e[1] = (1 - c) * ux * uy + s * uz;
+		rMat.e[2] = (1 - c) * ux * uz - s * uy;
 		rMat.e[3] = 0;
 
-		rMat.e[4] = (1 - c) * uy*ux - s * uz;
+		rMat.e[4] = (1 - c) * uy * ux - s * uz;
 		rMat.e[5] = c + (1 - c) * pow(uy, 2);
-		rMat.e[6] = (1 - c) * uy*uz + s * ux;
+		rMat.e[6] = (1 - c) * uy * uz + s * ux;
 		rMat.e[7] = 0;
 
-		rMat.e[8] = (1 - c) * uz*ux + s * uy;
-		rMat.e[9] = (1 - c) * uz*uz - s * ux;
+		rMat.e[8] = (1 - c) * uz * ux + s * uy;
+		rMat.e[9] = (1 - c) * uz * uz - s * ux;
 		rMat.e[10] = c + (1 - c) * pow(uz, 2);
 		rMat.e[11] = 0;
 
@@ -212,7 +212,7 @@ namespace NGTech
 		return rMat;
 	}
 
-	Mat4 Mat4::scale(const Vec3 &scale) {
+	Mat4 Mat4::scale(const Vec3& scale) {
 		Mat4 out;
 		out.e[0] = scale.x;
 		out.e[5] = scale.y;
@@ -220,7 +220,7 @@ namespace NGTech
 		return out;
 	}
 
-	Mat4 Mat4::lookAt(const Vec3 &eye, const Vec3 &center, const Vec3 &up) {
+	Mat4 Mat4::lookAt(const Vec3& eye, const Vec3& center, const Vec3& up) {
 		Mat4 out;
 		Vec3 x, y, z;
 		Mat4 m0;
@@ -279,7 +279,7 @@ namespace NGTech
 		return out;
 	}
 
-	Mat4 Mat4::reflect(const Vec4 &plane) {
+	Mat4 Mat4::reflect(const Vec4& plane) {
 		Mat4 out;
 		float x = plane.x;
 		float y = plane.y;
@@ -308,7 +308,7 @@ namespace NGTech
 		return out;
 	}
 
-	Mat4 Mat4::reflectProjection(const Mat4 &proj, const Vec4 &plane) {
+	Mat4 Mat4::reflectProjection(const Mat4& proj, const Vec4& plane) {
 		Mat4 out;
 		Vec4 q; //= Vec4(sign(plane.x), 1.0, sign(plane.z), 1.0);
 				//q = q * Mat4::inverse(proj);
@@ -329,7 +329,7 @@ namespace NGTech
 		return out;
 	}
 
-	Mat4 Mat4::cube(const Vec3 &position, int face) {
+	Mat4 Mat4::cube(const Vec3& position, int face) {
 		Mat4 out;
 		switch (face)
 		{
@@ -352,23 +352,23 @@ namespace NGTech
 	}
 
 	Mat4 Mat4::texBias() {
-		return Mat4::translate(Vec3(0.5, 0.5, 1))*Mat4::scale(Vec3(0.5, 0.5, 0));
+		return Mat4::translate(Vec3(0.5, 0.5, 1)) * Mat4::scale(Vec3(0.5, 0.5, 0));
 	}
 
 	/**
 	*/
-	void Mat4::SetPosition(const Vec3&_vec)
+	void Mat4::SetPosition(const Vec3& _vec)
 	{
-		TODO("SCALE");
-		auto mas = (Mat4::translate(_vec)*this->getRotation()).e;
+		// TODO: Add support of SCALE
+		auto mas = (Mat4::translate(_vec) * this->getRotation()).e;
 		memcpy(e, mas, sizeof(float) * 16);
 	}
 
 	/*Arithmetic operators*/
-	Mat4 Mat4::operator*(const Mat4 &b) const {
+	Mat4 Mat4::operator*(const Mat4& b) const {
 		Mat4 result;
 
-		const Mat4 &a = *this;
+		const Mat4& a = *this;
 		result.e[0] = (a.e[0] * b.e[0]) + (a.e[4] * b.e[1]) + (a.e[8] * b.e[2]) + (a.e[12] * b.e[3]);
 		result.e[1] = (a.e[1] * b.e[0]) + (a.e[5] * b.e[1]) + (a.e[9] * b.e[2]) + (a.e[13] * b.e[3]);
 		result.e[2] = (a.e[2] * b.e[0]) + (a.e[6] * b.e[1]) + (a.e[10] * b.e[2]) + (a.e[14] * b.e[3]);
@@ -392,10 +392,10 @@ namespace NGTech
 		return result;
 	}
 
-	Vec4 Mat4::operator*(const Vec4 &v) const {
+	Vec4 Mat4::operator*(const Vec4& v) const {
 		Vec4 result;
 
-		const Mat4 &m = *this;
+		const Mat4& m = *this;
 		result.x = m.e[0] * v.x + m.e[4] * v.y + m.e[8] * v.z + m.e[12] * v.w;
 		result.y = m.e[1] * v.x + m.e[5] * v.y + m.e[9] * v.z + m.e[13] * v.w;
 		result.z = m.e[2] * v.x + m.e[6] * v.y + m.e[10] * v.z + m.e[14] * v.w;
@@ -403,10 +403,10 @@ namespace NGTech
 		return result;
 	}
 
-	Vec3 Mat4::operator*(const Vec3 &v) const {
+	Vec3 Mat4::operator*(const Vec3& v) const {
 		Vec3 result;
 
-		const Mat4 &m = *this;
+		const Mat4& m = *this;
 		result.x = m.e[0] * v.x + m.e[4] * v.y + m.e[8] * v.z + m.e[12];
 		result.y = m.e[1] * v.x + m.e[5] * v.y + m.e[9] * v.z + m.e[13];
 		result.z = m.e[2] * v.x + m.e[6] * v.y + m.e[10] * v.z + m.e[14];
@@ -415,7 +415,7 @@ namespace NGTech
 
 	//============FOR ANOTHER==========
 
-	Vec4 operator*(const Vec4 &v, const Mat4 &m) {
+	Vec4 operator*(const Vec4& v, const Mat4& m) {
 		Vec4 result;
 
 		result.x = m.e[0] * v.x + m.e[4] * v.y + m.e[8] * v.z + m.e[12] * v.w;
@@ -425,7 +425,7 @@ namespace NGTech
 		return result;
 	}
 
-	Vec3 operator*(const Vec3 &v, const Mat4 &m) {
+	Vec3 operator*(const Vec3& v, const Mat4& m) {
 		Vec3 result;
 
 		result.x = m.e[0] * v.x + m.e[4] * v.y + m.e[8] * v.z + m.e[12];

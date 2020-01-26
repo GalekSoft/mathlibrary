@@ -37,19 +37,19 @@ namespace NGTech
 
 		/**
 		*/
-		BSphere(const Vec3 &_center, float _radius)
+		BSphere(const Vec3& _center, float _radius)
 			: center(_center), radius(_radius)
 		{}
 
 		/**
 		*/
-		BSphere(const BSphere &sphere)
+		BSphere(const BSphere& sphere)
 			: center(sphere.center), radius(sphere.radius)
 		{}
 
 		/**
 		*/
-		ENGINE_INLINE BSphere &operator=(const BSphere &sphere)
+		ENGINE_INLINE BSphere& operator=(const BSphere& sphere)
 		{
 			if (this != &sphere)
 			{
@@ -60,14 +60,14 @@ namespace NGTech
 			return *this;
 		}
 
-		ENGINE_INLINE bool operator==(const BSphere &sphere) {
+		ENGINE_INLINE bool operator==(const BSphere& sphere) {
 			return (center == sphere.center)
 				&& (Math::IsEqual(radius, sphere.radius));
 		}
 
 		/**
 		*/
-		ENGINE_INLINE void AddPoint(const Vec3 &point)
+		ENGINE_INLINE void AddPoint(const Vec3& point)
 		{
 			Vec3 d = point - center;
 			float length = d.length();
@@ -80,7 +80,7 @@ namespace NGTech
 
 		/**
 		*/
-		ENGINE_INLINE void AddSphere(const BSphere &sphere)
+		ENGINE_INLINE void AddSphere(const BSphere& sphere)
 		{
 			Vec3 dc = sphere.center - center;
 			float lc = dc.length();
@@ -92,18 +92,18 @@ namespace NGTech
 
 		/**
 		*/
-		ENGINE_INLINE bool IsPointInside(const Vec3 &point)
+		ENGINE_INLINE bool IsPointInside(const Vec3& point)
 		{
 			return (point - center).length() < radius;
 		}
 
 		/**
 		*/
-		ENGINE_INLINE bool IntersectsSphere(const BSphere &sphere)
+		ENGINE_INLINE bool IntersectsSphere(const BSphere& sphere)
 		{
 			return (center - sphere.center).length() <= (radius + sphere.radius);
 		}
 	};
 
-	extern BSphere operator*(const Mat4 &a, const BSphere &s);
+	extern BSphere operator*(const Mat4& a, const BSphere& s);
 }
