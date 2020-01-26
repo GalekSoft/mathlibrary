@@ -11,6 +11,7 @@
 * NG Games(Galek Studios) Ltd. at https://galek.github.io/portfolio/
 */
 
+#include "MathLib.h"
 #include "BBox.h"
 
 namespace NGTech

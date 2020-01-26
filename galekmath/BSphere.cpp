@@ -10,6 +10,7 @@
 * A copy of the NGTech License Agreement is available by contacting
 * NG Games(Galek Studios) Ltd. at https://galek.github.io/portfolio/
 */
+#include "MathLib.h"
 #include "BSphere.h"
 
 namespace NGTech

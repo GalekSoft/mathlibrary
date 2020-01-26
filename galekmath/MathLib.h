@@ -12,13 +12,13 @@
 */
 #pragma once
 
+#include "galekmath_config.h"
 //***************************************************************************
 #include <math.h>
 #include <limits>
 #undef max
 #undef min
 #include <float.h>
-#include "../../Src/Platform/inc/platformdetect.h"
 //***************************************************************************
 
 namespace NGTech {
