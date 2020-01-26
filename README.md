@@ -18,6 +18,7 @@ Just copy all files to your project folder. Redeclare macroses:
   - ENGINE_INLINE macro on __forceinline or inline
   - TimeDelta on float or double (use typedef)
   - Redeclare ASSERT macron on your own
+  - Declare your String macro
 
 
 License
