@@ -18,6 +18,8 @@
 
 //***************************************************************************
 #include <assert.h>
+#include <string>
+#include <algorithm>
 //***************************************************************************
 
 #ifndef ENGINE_INLINE
@@ -31,6 +33,8 @@ typedef double TimeDelta;
 #else
 typedef float TimeDelta;
 #endif
+
+typedef std::string String;
 
 #ifndef ASSERT(x, ...)
 #define ASSERT(x, ...) assert(x, __VA_ARGS__)
