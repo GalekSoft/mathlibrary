@@ -24,14 +24,12 @@
 #define ENGINE_INLINE inline
 #endif
 
-#ifndef USE_SINGLE_PRECISION
-#define USE_SINGLE_PRECISION 1
-#endif
+#cmakedefine USE_DOUBLE_PRECISION 1
 
-#if USE_SINGLE_PRECISION
-typedef float TimeDelta;
-#else
+#if USE_DOUBLE_PRECISION
 typedef double TimeDelta;
+#else
+typedef float TimeDelta;
 #endif
 
 #ifndef ASSERT(x, ...)
